@@ -73,16 +73,13 @@ nav {
   text-decoration: none;
   display: flex; align-items: center; gap: 10px;
 }
-.nav-logo .sym { display: flex; flex-direction: column; gap: 2px; }
-.nav-logo .sym span {
-  display: block; height: 3px; border-radius: 1px;
-  transform-origin: left;
-  animation: slash-in 0.7s var(--ease-out) both;
+.nav-logo-svg {
+  height: 32px;
+  width: auto;
+  display: block;
+  opacity: 0;
+  animation: fade-in 0.6s 0.1s var(--ease-out) forwards;
 }
-.nav-logo .sym span:nth-child(1) { width: 18px; background: var(--orange);     animation-delay: 0.1s; }
-.nav-logo .sym span:nth-child(2) { width: 14px; background: var(--purple);     animation-delay: 0.2s; }
-.nav-logo .sym span:nth-child(3) { width: 10px; background: var(--cyan);        animation-delay: 0.3s; }
-@keyframes slash-in { from { transform: scaleX(0); opacity:0; } to { transform: scaleX(1); opacity:1; } }
 
 .nav-logo .wm { color: var(--offwhite); }
 .nav-logo .wm .W { color: var(--orange); }
@@ -357,6 +354,12 @@ section { padding: 120px 48px; }
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 80px; align-items: center;
 }
+.screen-url {
+  margin-left: 12px; font-family: var(--font-mono); font-size: 11px;
+  color: var(--violet); letter-spacing: 0.04em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  max-width: 200px;
+}
 .case-h2 {
   font-family: var(--font-display);
   font-size: clamp(34px, 3.8vw, 54px);
@@ -627,9 +630,7 @@ footer {
 <!-- ── NAV ──────────────────────────────────────────────────────────────── -->
 <nav>
   <a href="#" class="nav-logo">
-    <div class="sym">
-      <span></span><span></span><span></span>
-    </div>
+    <img src="logo.svg" alt="WyrhtAIm símbolo" class="nav-logo-svg">
     <span class="wm"><span class="W">W</span>yrht<span class="AI">AI</span><span class="m-end">m</span></span>
   </a>
   <ul class="nav-links">
@@ -638,7 +639,7 @@ footer {
     <li><span class="num">03</span><a href="#case">Caso de uso</a></li>
     <li><span class="num">04</span><a href="#model">Modelo</a></li>
   </ul>
-  <a href="#cta-section" class="nav-cta">Iniciar diagnóstico →</a>
+  <a href="#cta-section" class="nav-cta">Diagnóstico gratis →</a>
 </nav>
 
 <!-- ── HERO ──────────────────────────────────────────────────────────────── -->
@@ -647,13 +648,7 @@ footer {
 
   <!-- Decorative large Quantum Leap -->
   <div class="hero-symbol" aria-hidden="true">
-    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g transform="rotate(-20 200 200)">
-        <rect x="40"  y="80"  width="320" height="56" rx="6" fill="#E8650A"/>
-        <rect x="70"  y="168" width="260" height="46" rx="6" fill="#534AB7"/>
-        <rect x="100" y="248" width="200" height="36" rx="6" fill="#1CB8D4"/>
-      </g>
-    </svg>
+    <img src="logo.svg" alt="" style="width:680px;height:680px;object-fit:contain;">
   </div>
 
   <div style="position:relative;z-index:2;">
@@ -747,11 +742,12 @@ footer {
     <div class="service-item reveal">
       <div class="service-num">→ 01</div>
       <div class="service-content">
-        <div class="service-name">Elicitación &amp; Diagnóstico AS-IS</div>
+        <div class="service-name">Entendemos tu trabajo antes de tocar tecnología</div>
         <div class="service-desc">
-          Usamos frameworks de Business Analysis para mapear tus procesos reales — no los ideales.
-          Agente BA conversacional por web, WhatsApp o voice memo. El Process Owner valida
-          el diagrama antes de que toquemos una línea de código.
+          Antes de proponer cualquier solución, aprendemos cómo funciona tu operación real —
+          no la versión ideal del organigrama. Nos sentamos contigo, hacemos las preguntas
+          incómodas y documentamos lo que realmente pasa. Solo cuando entendemos el problema
+          de verdad, proponemos cómo resolverlo.
         </div>
       </div>
       <div class="service-arrow">Explorar <span>→</span></div>
@@ -759,11 +755,12 @@ footer {
     <div class="service-item reveal reveal-delay-1">
       <div class="service-num">→ 02</div>
       <div class="service-content">
-        <div class="service-name">Arquitectura de Agentes</div>
+        <div class="service-name">Construimos el producto que tu equipo necesita</div>
         <div class="service-desc">
-          Diseñamos e integramos sistemas de agentes especializados por pilar de responsabilidad.
-          Orquestador central, agentes temáticos con contexto profundo, agente de síntesis
-          y agente de despacho. Agnóstico de herramientas — funciona con lo que ya usas.
+          Diseñamos y construimos herramientas de inteligencia artificial hechas específicamente
+          para tu rol, tus responsabilidades y tus herramientas actuales. No vendemos software
+          genérico ni te pedimos que cambies cómo trabajas — adaptamos la tecnología a ti,
+          no al revés.
         </div>
       </div>
       <div class="service-arrow">Explorar <span>→</span></div>
@@ -771,11 +768,11 @@ footer {
     <div class="service-item reveal reveal-delay-2">
       <div class="service-num">→ 03</div>
       <div class="service-content">
-        <div class="service-name">Gobernanza &amp; Retención de Soluciones</div>
+        <div class="service-name">Nos quedamos para que funcione siempre</div>
         <div class="service-desc">
-          Los modelos de IA evolucionan a velocidad vertiginosa. Wyrhtaim mantiene y refina
-          tu sistema continuamente — sin que necesites un equipo interno dedicado ni asumir
-          el costo de un Prompt Engineer en nómina.
+          La inteligencia artificial cambia rápido. Lo que hoy funciona perfecto, en seis meses
+          necesita ajustes. Wyrhtaim se mantiene a tu lado para que tu herramienta no se quede
+          obsoleta — afinando, mejorando y expandiendo según crece tu operación.
         </div>
       </div>
       <div class="service-arrow">Explorar <span>→</span></div>
@@ -897,10 +894,10 @@ footer {
         <span style="height:20px"></span>
         <span style="height:36px"></span>
       </div>
-      <div class="step-name">Elicitación</div>
+      <div class="step-name">Escuchamos</div>
       <div class="step-desc">
-        Agente BA conversacional captura el proceso AS-IS. Web, WhatsApp o voice memo.
-        Cuestiona excepciones. Genera diagrama. Process Owner valida y firma.
+        Aprendemos cómo trabaja tu equipo hoy — qué herramientas usa, qué información
+        maneja, dónde se pierde tiempo. Sin suposiciones, sin plantillas genéricas.
       </div>
     </div>
     <div class="step reveal reveal-delay-1">
@@ -910,11 +907,10 @@ footer {
         <span style="height:32px"></span>
         <span style="height:24px"></span>
       </div>
-      <div class="step-name">Arquitectura</div>
+      <div class="step-name">Diseñamos</div>
       <div class="step-desc">
-        Diagrama autorizado → épicas y user stories en Jira.
-        Selección de módulos preconstruidos. Biblioteca agnóstica
-        de componentes reutilizables.
+        Trazamos juntos el producto: qué hace, qué no hace, cómo encaja en tu día a día.
+        Tú lo apruebas antes de que construyamos cualquier cosa.
       </div>
     </div>
     <div class="step reveal reveal-delay-2">
@@ -924,11 +920,10 @@ footer {
         <span style="height:24px"></span>
         <span style="height:18px"></span>
       </div>
-      <div class="step-name">Construcción</div>
+      <div class="step-name">Construimos</div>
       <div class="step-desc">
-        Staff augmentation LATAM en modelo fixed-fee.
-        Sandbox del cliente. Definition of Done estricto.
-        Cero dependencia de contratista. Deuda técnica declarada.
+        Desarrollamos el producto con estándares de calidad altos. Al entregarlo,
+        funciona, está documentado y no genera dependencias que te amarren.
       </div>
     </div>
     <div class="step reveal reveal-delay-3">
@@ -938,11 +933,10 @@ footer {
         <span style="height:36px"></span>
         <span style="height:28px"></span>
       </div>
-      <div class="step-name">Retención</div>
+      <div class="step-name">Evolucionamos</div>
       <div class="step-desc">
-        POC de alto impacto. Métricas de horas-hombre recuperadas.
-        Iguala mensual de gobernanza. El sistema visibiliza
-        el siguiente proceso a optimizar.
+        Medimos el impacto real desde el primer día. Y cuando el sistema necesita crecer
+        o mejorar, ya estamos ahí — no tienes que empezar desde cero.
       </div>
     </div>
   </div>
@@ -996,14 +990,14 @@ footer {
 
 <!-- ── CTA ────────────────────────────────────────────────────────────────── -->
 <section id="cta-section">
-  <div class="cta-label">¿Listo para empezar?</div>
+  <div class="cta-label">Tu primer diagnóstico es gratis</div>
   <h2 class="cta-h2 reveal">
     ¿Cuál es el primer<br>
     proceso que quieres<br>
     <em>potenciar?</em>
   </h2>
   <div class="cta-actions reveal reveal-delay-1">
-    <a href="#" class="btn-primary">Iniciar diagnóstico →→</a>
+    <a href="#" class="btn-primary">Solicitar diagnóstico gratis →</a>
     <a href="#" class="btn-ghost">Ver caso de uso</a>
   </div>
 </section>
