@@ -113,6 +113,26 @@ nav {
 }
 .nav-cta:hover { background: var(--orange-dim); transform: translateY(-1px); }
 
+/* buttons que comparten estilo con sus equivalentes <a> */
+button.btn-primary {
+  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 16px 36px;
+  background: var(--orange); color: var(--obsidian);
+  border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+button.btn-primary:hover { background: var(--orange-dim); transform: translateY(-2px); }
+button.btn-ghost {
+  font-family: var(--font-body); font-size: 14px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 15px 36px;
+  background: transparent; color: var(--offwhite);
+  border: 1px solid rgba(245,244,240,0.22); cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+button.btn-ghost:hover { border-color: var(--offwhite); }
+
 /* ── HERO ─────────────────────────────────────────────────────────── */
 #hero {
   min-height: 100vh;
@@ -762,7 +782,7 @@ footer {
     <li><span class="num">03</span><a href="#case">Caso de uso</a></li>
     <li><span class="num">04</span><a href="#model">Modelo</a></li>
   </ul>
-  <a href="#cta-section" class="nav-cta">Diagnóstico gratis →</a>
+  <button onclick="openModal()" class="nav-cta">Diagnóstico gratis →</button>
 </nav>
 
 <!-- ── HERO ──────────────────────────────────────────────────────────────── -->
@@ -788,7 +808,7 @@ footer {
     </p>
     <div class="hero-actions">
       <a href="#case" class="btn-primary">Ver caso de uso →</a>
-      <a href="#cta-section" class="btn-ghost">Agendar diagnóstico</a>
+      <button onclick="openModal()" class="btn-ghost">Diagnóstico gratis</button>
     </div>
   </div>
 
@@ -1111,6 +1131,74 @@ footer {
   </div>
 </section>
 
+<!-- ── CONTACT MODAL ──────────────────────────────────────────────────────── -->
+<div id="contact-modal" style="
+  display:none; position:fixed; inset:0; z-index:2000;
+  background:rgba(10,10,14,0.88); backdrop-filter:blur(18px);
+  align-items:center; justify-content:center; padding:24px;
+">
+  <div style="
+    background:var(--indigo); border:1px solid rgba(245,244,240,0.1);
+    max-width:480px; width:100%; padding:48px 40px; position:relative;
+  ">
+    <button onclick="closeModal()" style="
+      position:absolute; top:20px; right:24px;
+      background:none; border:none; color:var(--violet);
+      font-size:22px; cursor:pointer; line-height:1;
+    ">✕</button>
+
+    <div style="
+      font-family:var(--font-mono); font-size:11px;
+      color:var(--orange); letter-spacing:0.14em; text-transform:uppercase;
+      margin-bottom:20px;
+    ">Tu primer diagnóstico es gratis</div>
+
+    <div style="
+      font-family:var(--font-display); font-size:28px; font-weight:700;
+      letter-spacing:-0.02em; line-height:1.1; margin-bottom:36px;
+    ">Hablemos de tu<br>operación</div>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/5281311820990" target="_blank" style="
+      display:flex; align-items:center; gap:16px;
+      padding:20px 24px; margin-bottom:12px;
+      background:rgba(232,101,10,0.08); border:1px solid rgba(232,101,10,0.25);
+      text-decoration:none; transition:background 0.2s;
+    " onmouseover="this.style.background='rgba(232,101,10,0.15)'"
+       onmouseout="this.style.background='rgba(232,101,10,0.08)'">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#E8650A"/>
+      </svg>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--orange);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">WhatsApp</div>
+        <div style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--offwhite);">+52 81 3118 2099</div>
+      </div>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:commercial@wyrhtaim.com?subject=Diagnóstico%20Wyrhtaim" style="
+      display:flex; align-items:center; gap:16px;
+      padding:20px 24px; margin-bottom:32px;
+      background:rgba(83,74,183,0.08); border:1px solid rgba(83,74,183,0.25);
+      text-decoration:none; transition:background 0.2s;
+    " onmouseover="this.style.background='rgba(83,74,183,0.15)'"
+       onmouseout="this.style.background='rgba(83,74,183,0.08)'">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#7B6EE8"/>
+      </svg>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--purple-lt);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Correo</div>
+        <div style="font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--offwhite);word-break:break-all;">commercial@wyrhtaim.com</div>
+      </div>
+    </a>
+
+    <div style="
+      font-family:var(--font-mono); font-size:11px;
+      color:var(--violet); text-align:center; line-height:1.6;
+    ">Respondemos en menos de 24 horas.</div>
+  </div>
+</div>
+
 <!-- ── CTA ────────────────────────────────────────────────────────────────── -->
 <section id="cta-section">
   <div class="cta-label">Tu primer diagnóstico es gratis</div>
@@ -1120,8 +1208,8 @@ footer {
     <em>potenciar?</em>
   </h2>
   <div class="cta-actions reveal reveal-delay-1">
-    <a href="#" class="btn-primary">Solicitar diagnóstico gratis →</a>
-    <a href="#" class="btn-ghost">Ver caso de uso</a>
+    <button onclick="openModal()" class="btn-primary">Solicitar diagnóstico gratis →</button>
+    <a href="#case" class="btn-ghost">Ver caso de uso</a>
   </div>
 </section>
 
@@ -1135,13 +1223,30 @@ footer {
   </div>
   <ul class="footer-links">
     <li><a href="#">LinkedIn</a></li>
-    <li><a href="#">Contacto</a></li>
-    <li><a href="#">Privacidad</a></li>
+    <li><a href="javascript:void(0)" onclick="openModal()">Contacto</a></li>
+    <li><a href="mailto:commercial@wyrhtaim.com">commercial@wyrhtaim.com</a></li>
     <li><a href="#">© 2026</a></li>
   </ul>
 </footer>
 
 <script>
+// ── MODAL DE CONTACTO ───────────────────────────────────────────────────────
+function openModal() {
+  const m = document.getElementById('contact-modal');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  const m = document.getElementById('contact-modal');
+  m.style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.getElementById('contact-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
 // ── REVEAL ON SCROLL ────────────────────────────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
